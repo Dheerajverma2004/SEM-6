@@ -5,3 +5,8 @@ AP/LAB4/SimpleFactoryDesignPattern/Main.class
 AP/LAB4/SimpleFactoryDesignPattern/Tea.class
 AP/LAB4/SimpleFactoryDesignPattern/TeaFactory.class
 AP/LAB4/SimpleFactoryDesignPattern/TeaStore.class
+AP/LAB4/TemplateMethodDesignPattern/Beer.class
+AP/LAB4/TemplateMethodDesignPattern/Whiskey.class
+AP/LAB4/TemplateMethodDesignPattern/Rum.class
+AP/LAB4/TemplateMethodDesignPattern/Beverage.class
+AP/LAB4/TemplateMethodDesignPattern/Main.class
