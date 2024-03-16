@@ -1,0 +1,4 @@
+The decorator pattern allows to add / change the behaviors of an object dynamicaaly (at runtime), 
+without impacting the behaviours of other objects.
+
+ 
