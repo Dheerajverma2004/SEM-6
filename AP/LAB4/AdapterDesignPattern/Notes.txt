@@ -1,0 +1,68 @@
+//Provide compatibility to two or more otherwise incompatible interfaces. 
+
+public interface Crow{
+    void fly();
+    void eat();
+    void cry();
+}
+
+public interface Swan{
+    void swim();
+    void eat();
+    void sing();
+}
+
+public class IndianCrow implements Crow{
+    public void fly(){
+        System.out.println("Indian Crow is flying high over mountains");
+    }
+    public void eat(){
+        System.out.println("Indian Crow is eating pearls");
+    }
+    public void cry(){
+        System.out.println("Indian Crow is cawing");
+    }
+}
+
+public class IndianSwan implements Swan{
+    public void swim(){
+        System.out.println("Indian Swan is swimming in the lake");
+    }
+    public void eat(){
+        System.out.println("Indian Swan is eating fish");
+    }
+    public void sing(){
+        System.out.println("Indian Swan is singing");
+    }
+}
+
+public class CrowAdapter implements Swan{
+    private Crow crow;
+    public CrowAdapter(Crow crow){
+        this.crow = crow;
+    }
+    public void swim(){
+        crow.fly();
+    }
+    public void eat(){
+        crow.eat();
+    }
+    public void sing(){
+        crow.cry();
+    }
+}
+
+public class AdapterPattern{
+    public static void main(String[] args){
+        Crow crow = new IndianCrow();
+        Swan swan = new IndianSwan(); 
+        CrowAdapter crowadapter = new CrowAdapter(crow);
+        client(crowadapter);
+    }
+
+    public static void client(Swan swan){
+        swan.swim();
+        swan.eat();
+        swan.sing();
+    }
+}
