@@ -1,0 +1,206 @@
+class Duck{
+    swim()
+    fly()
+    quack()    
+}
+
+class RedHeadDuck extends Duck{
+
+}
+
+class GreatIndianDuck extends Duck{
+    
+}
+
+class RubberDuck extends Duck{ //compromised
+ 
+}
+
+class WoodenDuck extends Duck{ //compromised
+    
+}
+
+Note: DP says that separate out the uncompromisers.
+
+New Pattern:
+
+class Duck{
+    swim()
+}
+
+class RHD extends Duck implements flyable, quackable{
+    
+}
+
+class GID extends Duck implements flyable, quackable{
+    
+}
+
+class RD extends Duck implements quackable{ 
+    quack(){
+        squeak()
+    }
+}
+
+class WD extends Duck{
+    
+}
+
+interface flyable{
+    fly()
+}
+
+interface quackable{
+    quack()
+}
+
+NOTE: Strategy Pattern saya prepare a class family of algorithms and by concretly dfining the interfaces defined.
+
+class FlyHigh implements flyable{
+    fly(){
+        //code
+    }
+}
+
+class NoFly implements flyable{
+    fly(){
+        //code
+    }
+}
+
+class LoudQuack implements quackable{
+    quack(){
+        //code
+    }
+}
+
+class Mute implements quackable{
+    quack(){
+        //code
+    }
+}
+
+//class Duck implements flyable, quackable as association by containgn refernces of flyable and quackable as data members
+
+class Duck{
+    flyable f;
+    quackable q;
+    
+    swim()
+    fly(){
+        f.fly()
+    }
+    quack(){
+        q.quack()
+    }
+}
+
+
+
+||||||||||||||||||||||||| ACTUAL CODE JAVA |||||||||||||||||||||||||
+
+//Family of Algorithms
+
+interface Flyable{
+    public abstract void fly();
+}
+
+interface Quackable{
+    public abstract void quack();
+}
+
+class FlyHigh implements Flyable{
+    public void fly(){
+        System.out.println("Flying High");
+    }
+}
+
+class NoFly implements Flyable{
+    public void fly(){
+        System.out.println("I don't fly");
+    }
+}
+
+class LoudQuack implements Quackable{
+    public void quack(){
+        System.out.println("Loud Quack");
+    }
+}
+
+class Mute implements Quackable{
+    public void quack(){
+        System.out.println("Mute Quack");
+    }
+}
+
+class Squeak implements Quackable{
+    public void quack(){
+        System.out.println("Squeak");
+    }
+}
+
+//Duck Class
+
+class Duck{
+    Flyable flyable;
+    Quackable quackable;
+
+    void performQuack(){
+        quackable.quack();
+    }
+
+    void performFly(){
+        flyable.fly();
+    }
+
+    void swim(){
+        System.out.println("Every duck swims!!");
+    }
+}
+
+//Subclasses of Duck
+
+class RedHeadDuck extends Duck{
+    RedHeadDuck(){
+        flyable = new FlyHigh();
+        quackable = new LoudQuack();
+    }
+}
+
+class GreatIndianDuck extends Duck{
+    GreatIndianDuck(){
+        flyable = new FlyHigh();
+        quackable = new LoudQuack();
+    }
+}
+
+class RubberDuck extends Duck{
+    RubberDuck(){
+        flyable = new NoFly();
+        quackable = new Squeak();
+    }
+}
+
+class WoodenDuck extends Duck{
+    WoodenDuck(){
+        flyable = new NoFly();
+        quackable = new Mute();
+    }
+}
+
+//Main class
+
+public class Main{
+    public static void main(String[] args){
+        Duck d = new RedHeadDuck();
+        d.quack();
+        d.fly();
+        d.swim();
+
+        d = new WoodenDuck();
+        d.quack();
+        d.fly();
+        d.swim();
+    }
+}
+
