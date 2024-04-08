@@ -156,6 +156,14 @@ class Duck{
     void swim(){
         System.out.println("Every duck swims!!");
     }
+    
+    public void setFlyable(Flyable flyable){
+        this.flyable = flyable;
+    }
+
+    public void setQuackable(Quackable quackable){
+        this.quackable = quackable;
+    }
 }
 
 //Subclasses of Duck
@@ -193,6 +201,10 @@ class WoodenDuck extends Duck{
 public class Main{
     public static void main(String[] args){
         Duck d = new RedHeadDuck();
+        Flyable flyable = new NoFly();
+        d.setFlyable(flyable);
+        Quackable quackable = new Squeak();
+        d.setQuackable(quackable);
         d.quack();
         d.fly();
         d.swim();
@@ -203,4 +215,8 @@ public class Main{
         d.swim();
     }
 }
+
+
+
+/Definition: Strategy Pattern defines a family of algorithms, encapsulates each one of them and makes them interchangeable. Strategy lets the algorithm vary independently from clients that use it.
 
